@@ -1,0 +1,188 @@
+<style>
+    /* Basic setup for the background container */
+    /* Basic setup for the background container */
+    .bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        transform: scale(1.0);
+        backface-visibility: hidden;
+        z-index: -2; /* Set it behind all content */
+        overflow: hidden; /* Ensure it doesn't affect scroll */
+    }
+    
+    /* Styling the before pseudo-element for overlay effects */
+    .bg:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(to top, rgba(19, 21, 25, 0.5), rgba(19, 21, 25, 0.5)), url("/images/overlay.png");
+        background-size: auto, 256px 256px;
+        background-position: center, center;
+        background-repeat: no-repeat, repeat;
+        transition: background-color 2.5s ease-in-out 0.75s;
+        z-index: -1; /* Keep it above the .bg but behind the content */
+    }
+    
+    /* Styling the after pseudo-element for the background image */
+    .bg:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(1.125);
+        transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out;
+        background-image: url("/images/bg.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: -3; /* Ensures it's beneath both content and overlay */
+    }
+    
+    /* When the article is visible, slightly scale down the background and apply blur */
+    body.is-article-visible .bg:after {
+        transform: scale(1.0825);
+        filter: blur(0.2rem);
+    }
+    
+    /* Preload state, where the overlay starts with a black background */
+    body.is-preload .bg:before {
+        background-color: #000;
+    }
+    
+    /* Ensure content scrolls above the background */
+    body {
+        position: relative;
+        z-index: 1; /* Keep content above the background */
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Avoid horizontal scroll issues */
+    }
+    
+    
+    /* Apply background color to the entire table */
+    .table-bg {
+        background-color: transparent;
+    }
+    
+    /* Optional: Customize header and data cell colors */
+    .table-bg th {
+        background-color: transparent;
+        color: white;
+    }
+    
+    .table-bg td {
+        background-color: transparent;
+    }
+    
+    .table {
+        width: auto; /* Table adjusts width based on content */
+        border-collapse: collapse; /* Remove gaps between borders */
+        table-layout: auto; /* Dynamic layout based on content */
+        margin: 10px;
+    }
+    
+    /* Styling table borders */
+    th, td {
+        border: 1px solid #ccc; /* Add border to each cell */
+        padding: 10px; /* Add padding for readability */
+        text-align: left; /* Align text to the left */
+    }
+    
+    /* Adjust the header to make it stand out */
+    th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+    
+    /* Prevent wrapping */
+    td {
+        white-space: nowrap; /* Keeps content in a single line */
+    }
+    
+    /* Optional: Zebra stripe for readability */
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    
+    
+    
+    #header {
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: -ms-flex;
+        display: flex;
+        -moz-flex-direction: column;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -moz-align-items: center;
+        -webkit-align-items: center;
+        -ms-align-items: center;
+        align-items: center;
+        -moz-transition: -moz-transform 0.325s ease-in-out, -moz-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
+        -webkit-transition: -webkit-transform 0.325s ease-in-out, -webkit-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
+        -ms-transition: -ms-transform 0.325s ease-in-out, -ms-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
+        transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
+        background-image: -moz-radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
+        background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
+        background-image: -ms-radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
+        background-image: radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
+        max-width: 100%;
+        text-align: center;
+    }
+    #header nav ul {
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: -ms-flex;
+        display: flex;
+        margin-bottom: 0;
+        list-style: none;
+        padding-left: 0;
+        border: solid 1px #ffffff;
+        border-radius: 4px;
+    }
+    
+    #header nav ul li {
+        padding-left: 0;
+        border-left: solid 1px #ffffff;
+    }
+    
+    #header nav ul li:first-child {
+        border-left: 0;
+    }
+    
+    #header nav ul li a {
+        display: block;
+        min-width: 7.5rem;
+        height: 2.75rem;
+        line-height: 2.75rem;
+        padding: 0 1.25rem 0 1.45rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+        font-size: 0.8rem;
+        border-bottom: 0;
+    }
+    
+    #header nav ul li a:hover {
+        background-color: rgba(255, 255, 255, 0.075);
+    }
+    
+    #header nav ul li a:active {
+        background-color: rgba(255, 255, 255, 0.175);
+    }
+    
+    a{
+        color: white;
+        text-decoration: none;
+    }
+</style>
