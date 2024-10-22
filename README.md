@@ -1,7 +1,5 @@
 # Swift-Powered Static Website with Ignite
 
-![Swift & Ignite Logo](assets/banner.png)
-
 ## Overview
 
 This project is a Swift-based static website powered by the [Ignite framework](https://github.com/twostraws/Ignite). Ignite enables developers to build ultra-fast, customizable websites entirely in Swift, allowing iOS developers to leverage their existing skills in the web development space.
