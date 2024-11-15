@@ -29,7 +29,7 @@ tags: about
 
  - Ability to break down epic/initiatives into small pieces of stories. Ensure quality delivery.
 
- - Secondary skill - Engineering Leader handling 2 teams.
+ - Secondary skill - Engineering Leader handling two teams.
 
     
 
